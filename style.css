@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Champagne";
+    src: url(fonts/Champagne\ &\ Limousines\ copy.ttf);
+}
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +13,7 @@ body {
     align-items: center;
 
     height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Champagne";
     background-color: black;
     color: white;
 }
@@ -21,6 +25,7 @@ body {
 
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 .square {
     width: 100px;
@@ -66,4 +71,36 @@ body {
     height: 2%;
     margin-top: -5%;
     width: 100%;
+}
+/* info area */
+.info_area,
+.choose_player,
+.button_area {
+    height: 50px;
+    width: 300px;
+    border: 2px solid white;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-bottom: 10px;
+}
+.info {
+    letter-spacing: 2px;
+    text-transform: capitalize;
+
+    text-shadow: 1px 1px 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
+}
+button {
+    border: none;
+    background-color: transparent;
+}
+a {
+    text-decoration: none;
+    color: white;
+    font-family: "Champagne";
+}
+p {
+    font-size: 30px;
 }

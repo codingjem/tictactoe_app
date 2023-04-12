@@ -1,11 +1,27 @@
 const board = document.querySelector("#board");
 const info = document.querySelector("#info");
+const circleButton = document.querySelector(".circle_btn");
+const crossButton = document.querySelector(".cross_btn");
 
 const boxes = ["", "", "", "", "", "", "", "", ""];
 
 let player = "circle";
-info.textContent = "It's Now Circle's Turn!";
+info.textContent = `Choose Player!`;
 
+// alternate Player
+function circlePlaying() {
+    player = "circle";
+    info.textContent = `It's now ${player}'s turn!`;
+}
+function crossPlaying() {
+    player = "cross";
+    info.textContent = `It's now ${player}'s turn!`;
+}
+
+circleButton.addEventListener("click", circlePlaying);
+crossButton.addEventListener("click", crossPlaying);
+
+// game function
 function checkWinner() {
     const allSquares = document.querySelectorAll(".square");
     const winningCombos = [
@@ -49,14 +65,17 @@ function checkWinner() {
 
     if (tie) {
         let num = 0;
-        for (let i = 0; i < 9; i++) {
-            if (allSquares[i].firstChild) num++;
-        }
+        allSquares.forEach((square) => {
+            if (square.firstChild) num++;
+        });
         if (num === 9) info.textContent = "It's a Tie!";
     }
 }
 
 function activePlayer(e) {
+    circleButton.removeEventListener("click", circlePlaying);
+    crossButton.removeEventListener("click", crossPlaying);
+
     const playing = document.createElement("div");
     playing.classList.add(player);
 

@@ -5,11 +5,35 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="style.css" />
+        <script
+            src="https://kit.fontawesome.com/0cc797a63d.js"
+            crossorigin="anonymous"
+        ></script>
         <title>Tic Tac Toe</title>
     </head>
     <body>
-        <p id="info"></p>
+        <div class="choose_player">
+            <button class="circle_btn">
+                <a><p>CIRCLE</p></a>
+            </button>
+            <span>or</span>
+            <button class="cross_btn">
+                <a><p>CROSS</p></a>
+            </button>
+        </div>
+        <div class="info_area">
+            <p id="info" class="info"></p>
+        </div>
+
         <div id="board"></div>
+        <div class="button_area">
+            <button>
+                <a href=""><i class="fa-sharp fa-solid fa-arrow-left"></i></a>
+            </button>
+            <button>
+                <a href=""><i class="fa-sharp fa-solid fa-arrow-right"></i></a>
+            </button>
+        </div>
 
         <script src="script.js"></script>
     </body>
