@@ -33,11 +33,13 @@ body {
     align-items: center;
 }
 .circle {
-    height: 90px;
-    width: 90px;
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
-    border: 20px solid rgb(13, 13, 61);
+    border: 1px solid white;
     box-sizing: border-box;
+    box-shadow: 0 0 10px 5px rgb(103, 103, 233),
+        inset 0 0 10px 5px rgb(103, 103, 233);
 }
 .cross {
     height: 90px;
@@ -50,18 +52,18 @@ body {
 .cross::after {
     content: "";
     position: absolute;
-    background-color: rgb(121, 19, 19);
-    /* box-shadow: 0 0 10px red; */
+    background-color: white;
+    box-shadow: 0 0 10px 5px rgb(253, 55, 55);
 }
 .cross::before {
     left: 50%;
-    width: 30%;
-    margin-left: -15%;
+    width: 2%;
+    margin-left: -5%;
     height: 100%;
 }
 .cross::after {
     top: 50%;
-    height: 30%;
-    margin-top: -15%;
+    height: 2%;
+    margin-top: -5%;
     width: 100%;
 }
