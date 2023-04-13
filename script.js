@@ -98,7 +98,7 @@ function setPlayer(e) {
     console.log(e.target.id);
     const move = boardGame.map((boxes) => {
         return boxes.map((value) => {
-            if (e.target.id == value) {
+            if (e.target.id === String(value)) {
                 value = player;
                 return value;
             }
