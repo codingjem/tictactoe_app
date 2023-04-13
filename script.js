@@ -26,15 +26,47 @@ circleButton.addEventListener("click", circlePlaying);
 crossButton.addEventListener("click", crossPlaying);
 
 // prev and next button
-// const backButton = document.querySelector(".back_btn");
-// const nextButton = document.querySelector(".next_btn");
+const backButton = document.querySelector(".back_btn");
+const nextButton = document.querySelector(".next_btn");
 
 let history = [];
-// let historyBtn = true;
-// function checkHistory() {
+let historyCounter = 1;
 
-// }
-// backButton.addEventListener("click", )
+function prevStep() {
+    if (historyCounter < history.length) {
+        historyCounter++;
+        const array = history[history.length - historyCounter];
+
+        const newArray = array.flat();
+        const allSquares = document.querySelectorAll(".square");
+        allSquares.forEach((square, index) => {
+            const cell = square.firstChild;
+            if (cell) {
+                cell.className = `${newArray[index]}`;
+                console.log(cell.className);
+            }
+        });
+    }
+}
+function nextStep() {
+    if (historyCounter > 1) {
+        historyCounter--;
+        const array = history[history.length - historyCounter];
+
+        const newArray = array.flat();
+        const allSquares = document.querySelectorAll(".square");
+        allSquares.forEach((square, index) => {
+            const cell = square.firstChild;
+            if (cell) {
+                cell.className = `${newArray[index]}`;
+                console.log(cell.className);
+            }
+        });
+    }
+}
+
+backButton.addEventListener("click", prevStep);
+nextButton.addEventListener("click", nextStep);
 
 function checkWinner() {
     const allSquares = document.querySelectorAll(".square");
@@ -65,6 +97,7 @@ function checkWinner() {
                 square.replaceWith(square.cloneNode(true))
             ); // another way to remove event listeners
             tie = false;
+
             return;
         }
         if (crossWins) {
@@ -73,6 +106,7 @@ function checkWinner() {
                 square.replaceWith(square.cloneNode(true))
             );
             tie = false;
+
             return;
         }
     });
@@ -120,8 +154,31 @@ function startGame() {
     const allSquares = document.querySelectorAll(".square");
     allSquares.forEach((square, index) => {
         square.id = index;
-        console.log(square);
         square.addEventListener("click", setPlayer);
     });
 }
 startGame();
+
+function reset() {
+    boardGame = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+    ];
+
+    player = "circle";
+    info.textContent = `Choose Player!`;
+
+    circleButton.addEventListener("click", circlePlaying);
+    crossButton.addEventListener("click", crossPlaying);
+
+    history = [];
+    historyCounter = 1;
+
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach((square) => {
+        square.firstChild?.remove();
+    });
+
+    startGame();
+}

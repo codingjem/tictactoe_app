@@ -75,7 +75,8 @@ body {
 /* info area */
 .info_area,
 .choose_player,
-.button_area {
+.button_area,
+.reset_button_area {
     height: 50px;
     width: 300px;
     border: 2px solid white;
