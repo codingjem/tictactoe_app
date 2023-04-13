@@ -93,8 +93,11 @@ body {
     text-shadow: 1px 1px 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
 }
 button {
+    width: 100px;
+    height: 50px;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 a {
     text-decoration: none;

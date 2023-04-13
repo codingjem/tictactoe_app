@@ -3,7 +3,11 @@ const info = document.querySelector("#info");
 const circleButton = document.querySelector(".circle_btn");
 const crossButton = document.querySelector(".cross_btn");
 
-const boxes = ["", "", "", "", "", "", "", "", ""];
+let boardGame = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+];
 
 let player = "circle";
 info.textContent = `Choose Player!`;
@@ -21,7 +25,17 @@ function crossPlaying() {
 circleButton.addEventListener("click", circlePlaying);
 crossButton.addEventListener("click", crossPlaying);
 
-// game function
+// prev and next button
+// const backButton = document.querySelector(".back_btn");
+// const nextButton = document.querySelector(".next_btn");
+
+let history = [];
+// let historyBtn = true;
+// function checkHistory() {
+
+// }
+// backButton.addEventListener("click", )
+
 function checkWinner() {
     const allSquares = document.querySelectorAll(".square");
     const winningCombos = [
@@ -72,30 +86,42 @@ function checkWinner() {
     }
 }
 
-function activePlayer(e) {
+function setPlayer(e) {
+    // disable switch player buttons
     circleButton.removeEventListener("click", circlePlaying);
     crossButton.removeEventListener("click", crossPlaying);
 
     const playing = document.createElement("div");
     playing.classList.add(player);
-
     e.target.append(playing);
-    player = player === "circle" ? "cross" : "circle";
 
+    console.log(e.target.id);
+    const move = boardGame.map((boxes) => {
+        return boxes.map((value) => {
+            if (e.target.id == value) {
+                value = player;
+                return value;
+            }
+            return value;
+        });
+    });
+    boardGame = move;
+    history.push(boardGame);
+    console.log(history);
+
+    player = player === "circle" ? "cross" : "circle";
     info.textContent = `It's Now ${player}'s Turn!`;
-    e.target.removeEventListener("click", activePlayer);
+    e.target.removeEventListener("click", setPlayer);
 
     checkWinner();
 }
 
-function createBoard() {
-    boxes.forEach((cell, index) => {
-        const box = document.createElement("div");
-        box.classList.add("square");
-        box.id = index;
-        box.addEventListener("click", activePlayer);
-
-        board.append(box);
+function startGame() {
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach((square, index) => {
+        square.id = index;
+        console.log(square);
+        square.addEventListener("click", setPlayer);
     });
 }
-createBoard();
+startGame();
