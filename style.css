@@ -17,20 +17,34 @@ body {
     background-color: black;
     color: white;
 }
+
+.logo {
+    display: flex;
+}
+.header {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+.logo_letters {
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+}
 #board {
     width: 300px;
     height: 300px;
-    border: 1px solid white;
     background-color: black;
 
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    margin-bottom: 60px;
 }
 .square {
     width: 100px;
     height: 100px;
-    border: 2px solid white;
+    border: 1px solid white;
     background-color: black;
     box-sizing: border-box;
     display: flex;
@@ -38,17 +52,22 @@ body {
     align-items: center;
 }
 .circle {
-    height: 70px;
-    width: 70px;
+    height: 70%;
+    width: 70%;
     border-radius: 50%;
     border: 1px solid white;
     box-sizing: border-box;
     box-shadow: 0 0 10px 5px rgb(103, 103, 233),
         inset 0 0 10px 5px rgb(103, 103, 233);
 }
+.circle:hover {
+    box-shadow: 0 0 10px 5px rgb(103, 103, 233), 0 0 10px 5px rgb(103, 103, 233),
+        inset 0 0 10px 5px rgb(103, 103, 233),
+        inset 0 0 10px 5px rgb(103, 103, 233);
+}
 .cross {
-    height: 90px;
-    width: 90px;
+    height: 90%;
+    width: 90%;
     position: relative;
     transform: rotate(45deg);
 }
@@ -79,7 +98,8 @@ body {
 .reset_button_area {
     height: 50px;
     width: 300px;
-    border: 2px solid white;
+    border: 1px solid white;
+    border-radius: 10px;
 
     display: flex;
     justify-content: space-around;
@@ -89,7 +109,7 @@ body {
 }
 .info {
     letter-spacing: 2px;
-    text-transform: capitalize;
+    text-transform: uppercase;
 
     text-shadow: 1px 1px 10px red, 0 0 20px red, 0 0 30px red, 0 0 40px red;
 }
@@ -106,5 +126,26 @@ a {
     font-family: "Champagne";
 }
 p {
-    font-size: 30px;
+    font-size: 25px;
+}
+
+.square:first-child,
+.square:nth-child(2),
+.square:nth-child(3) {
+    border-top: none;
+}
+.square:last-child,
+.square:nth-child(8),
+.square:nth-child(7) {
+    border-bottom: none;
+}
+
+.square:nth-child(3n + 1) {
+    border-left: none;
+}
+.square:nth-child(3n + 3) {
+    border-right: none;
+}
+.hidden {
+    visibility: hidden;
 }

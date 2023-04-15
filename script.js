@@ -13,21 +13,38 @@ let player = "circle";
 info.textContent = `Choose Player!`;
 
 // alternate Player
+const choosePlayer = document.querySelector(".choose_player");
+
 function circlePlaying() {
     player = "circle";
-    info.textContent = `It's now ${player}'s turn!`;
+    info.textContent = `${player}'s turn!`;
 }
 function crossPlaying() {
     player = "cross";
-    info.textContent = `It's now ${player}'s turn!`;
+    info.textContent = `${player}'s turn!`;
 }
 
 circleButton.addEventListener("click", circlePlaying);
 crossButton.addEventListener("click", crossPlaying);
 
+function hideChoosePlayer() {
+    choosePlayer.classList.add("hidden");
+}
+
 // prev and next button
+const buttonArea = document.querySelector(".button_area");
 const backButton = document.querySelector(".back_btn");
 const nextButton = document.querySelector(".next_btn");
+
+function showButtons() {
+    if (
+        info.textContent === "Circle Wins!" ||
+        info.textContent === "Cross Wins!" ||
+        info.textContent === "It's a Tie!"
+    ) {
+        buttonArea.classList.remove("hidden");
+    }
+}
 
 let history = [];
 let historyCounter = 1;
@@ -93,21 +110,19 @@ function checkWinner() {
 
         if (circleWins) {
             info.textContent = "Circle Wins!";
+            showButtons();
             allSquares.forEach((square) =>
                 square.replaceWith(square.cloneNode(true))
             ); // another way to remove event listeners
             tie = false;
-
-            return;
         }
         if (crossWins) {
             info.textContent = "Cross Wins!";
+            showButtons();
             allSquares.forEach((square) =>
                 square.replaceWith(square.cloneNode(true))
             );
             tie = false;
-
-            return;
         }
     });
 
@@ -117,11 +132,13 @@ function checkWinner() {
             if (square.firstChild) num++;
         });
         if (num === 9) info.textContent = "It's a Tie!";
+        showButtons();
     }
 }
 
 function setPlayer(e) {
     // disable switch player buttons
+    hideChoosePlayer();
     circleButton.removeEventListener("click", circlePlaying);
     crossButton.removeEventListener("click", crossPlaying);
 
@@ -171,6 +188,9 @@ function reset() {
 
     circleButton.addEventListener("click", circlePlaying);
     crossButton.addEventListener("click", crossPlaying);
+
+    choosePlayer.classList.remove("hidden");
+    buttonArea.classList.add("hidden");
 
     history = [];
     historyCounter = 1;
