@@ -1,3 +1,25 @@
+//intro section
+const crossEl = document.querySelector(".cross");
+const circleEl = document.querySelector(".circle");
+const crossBefore = window.getComputedStyle(crossEl, "::before");
+const crossAfter = window.getComputedStyle(crossEl, "::after");
+
+function stopBlinking() {
+    crossBefore.style.animation = "none";
+    crossAfter.style.animation = "none";
+    circleEl.classList.remove("blink");
+}
+// hide intro section
+const intro = document.querySelector(".intro_section");
+
+function hideIntro() {
+    intro.classList.add("none");
+    stopBlinking();
+}
+
+setTimeout(hideIntro, 5000);
+
+// main section
 const board = document.querySelector("#board");
 const info = document.querySelector("#info");
 const circleButton = document.querySelector(".circle_btn");
@@ -85,6 +107,10 @@ function nextStep() {
 backButton.addEventListener("click", prevStep);
 nextButton.addEventListener("click", nextStep);
 
+// winning board
+const infoArea = document.querySelector(".info_area");
+const resetButtonArea = document.querySelector(".reset_button_area");
+
 function checkWinner() {
     const allSquares = document.querySelectorAll(".square");
     const winningCombos = [
@@ -109,6 +135,7 @@ function checkWinner() {
         );
 
         if (circleWins) {
+            infoArea.classList.add("blink_circle");
             info.textContent = "Circle Wins!";
             showButtons();
             allSquares.forEach((square) =>
@@ -117,6 +144,7 @@ function checkWinner() {
             tie = false;
         }
         if (crossWins) {
+            infoArea.classList.add("blink_cross");
             info.textContent = "Cross Wins!";
             showButtons();
             allSquares.forEach((square) =>
@@ -161,7 +189,7 @@ function setPlayer(e) {
     console.log(history);
 
     player = player === "circle" ? "cross" : "circle";
-    info.textContent = `It's Now ${player}'s Turn!`;
+    info.textContent = `${player}'s Turn!`;
     e.target.removeEventListener("click", setPlayer);
 
     checkWinner();
@@ -199,6 +227,9 @@ function reset() {
     allSquares.forEach((square) => {
         square.firstChild?.remove();
     });
+
+    infoArea.classList.remove("blink_cross");
+    infoArea.classList.remove("blink_circle");
 
     startGame();
 }
